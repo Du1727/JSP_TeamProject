@@ -28,17 +28,17 @@ public class LoginAction extends HttpServlet {
 			request.getSession().setAttribute("idKey", id);
 			if (checkbox != null) {				
 				response.addCookie(cookie);
-				System.out.println("gogo");
+				
 			} else {
 				cookie.setMaxAge(0);
 				response.addCookie(cookie);
-				System.out.println("gogo2");
+			
 			}
 		} else {			
-			response.sendRedirect("/project/project/login.jsp");			
+			response.sendRedirect("/project/login.jsp");			
 			return;
 		}
-		response.sendRedirect("/project/project/index.jsp");
+		response.sendRedirect("/project/index.jsp");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

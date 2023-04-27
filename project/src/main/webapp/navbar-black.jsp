@@ -73,7 +73,7 @@
 					alt="..." /></a>
 				<div class="collapse navbar-collapse" id="navbarResponsive">
 					<ul class="navbar-nav text-uppercase ms-1">
-						<li class="nav-item"><a class="nav-link" href="#store"
+						<li class="nav-item"><a class="nav-link" href="store_main.jsp"
 							style="font-size: 1.05em; font-family: 배달의민족 도현; padding-left: 45px;">스토어</a></li>
 						<li class="nav-item"><a class="nav-link" href="#event"
 							style="font-size: 1.05em; font-family: 배달의민족 도현; padding-left: 25px">이벤트</a></li>
