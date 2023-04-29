@@ -7,7 +7,7 @@ public class saleBean {
 	private int type;
 	private int quantity;
 	private int price;
-	private String patdt;
+	private String paydt;
 	private int paymethod;
 	private int paystate;
 	public int getIdx() {
@@ -46,11 +46,11 @@ public class saleBean {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public String getPatdt() {
-		return patdt;
+	public String getPaydt() {
+		return paydt;
 	}
-	public void setPatdt(String patdt) {
-		this.patdt = patdt;
+	public void setPaydt(String paydt) {
+		this.paydt = paydt;
 	}
 	public int getPaymethod() {
 		return paymethod;

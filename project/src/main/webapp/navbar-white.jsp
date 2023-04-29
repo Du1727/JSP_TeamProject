@@ -42,6 +42,9 @@
          <div class="container" align="right">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br> 
 			<%if(logged) {%>			
+				<i class="bi bi-cart-plus" style="font-size: 1.2rem; color: rgb(0, 0, 0);"></i>          
+				<a href="cart.jsp" style="color: rgb(20, 20, 20); text-decoration-line: none;">장바구니</a>				
+	            &nbsp;&nbsp;&nbsp;&nbsp;<a style="color: rgb(50, 50, 50);">|</a>&nbsp;&nbsp;&nbsp;
 	            <i class="bi bi-person-fill" style="font-size: 1.2rem; color: rgb(0, 0, 0);"></i>        
 				<a href="logout.jsp" style="color: rgb(20, 20, 20); text-decoration-line: none;">로그아웃</a>
 			<%} else { %>
@@ -65,7 +68,7 @@
 	               <a class="navbar-brand" href="index.jsp"><img src='https://ifh.cc/g/cH4QTn.png' border='0' width=100% height=100% alt="..." /></a>
 	        <div class="collapse navbar-collapse" id="navbarResponsive">
 	            <ul class="navbar-nav text-uppercase ms-1">
-	                <li class="nav-item"><a class="nav-link" href="#store" style="color: rgb(30,30,30); font-size: 1.05em; font-family: 배달의민족 도현; padding-left: 45px;">스토어</a></li>
+	                <li class="nav-item"><a class="nav-link" href="store_main.jsp" style="color: rgb(30,30,30); font-size: 1.05em; font-family: 배달의민족 도현; padding-left: 45px;">스토어</a></li>
 	                <li class="nav-item"><a class="nav-link" href="#event" style="color: rgb(30,30,30); font-size: 1.05em; font-family: 배달의민족 도현; padding-left: 25px">이벤트</a></li>
 	                <li class="nav-item"><a class="nav-link" href="#call" style="color: rgb(30,30,30); font-size: 1.05em; font-family: 배달의민족 도현; padding-left: 25px">문의사항</a></li>
                  </ul>

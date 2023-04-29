@@ -16,7 +16,7 @@ if (id == null) {
 	response.sendRedirect("login.jsp");
 	return; // 이후에 코드를 무력화
 }
-Vector<cartBean> vlist = cmgr.getCartAll();
+Vector<cartBean> vlist = cmgr.getCart(id);
 MemberBean mBean = mmgr.getMember(id);
 int lastprice = 0;
 double discount = 0;
@@ -42,6 +42,7 @@ double discount = 0;
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 <script>
+const form = document.getElementById("cartData");
 	function deleteCart(form) {
 		form.flag.value = "delete";
 		form.submit();
@@ -50,16 +51,14 @@ double discount = 0;
 		form.flag.value = "buy";
 		form.submit();
 	}
-	function buyCart(form) {
-		form.flag.value = "backStore";
-		form.submit();
+	function toStore() {
+		location.href ="store_main.jsp";
 	}
 </script>
 <%@include file="/navbar-white.jsp"%>
 </head>
 <body>
 	<main>
-		<h1><%=vlist.size()%></h1>
 		<div class="container-lg">
 			<h3 class="pb-4 mb-4 fst-italic border-bottom border-3">장바구니</h3>
 			<div class="container-lg gap-10">
@@ -81,24 +80,29 @@ double discount = 0;
 							int totalprice = bean.getQuantity() * pbean.getPrice();
 							lastprice += totalprice;
 						%>
-						<form method="post" action="cartProc.jsp">
+						
 						<tr>
-
+						
 							<th class="text-center align-middle"><%=pbean.getName()%></th>
 							<td class="text-center align-middle" name="productPrice"><%=pbean.getPrice()%></td>
 							<td class="text-center align-middle" name="productQuantity"><%=bean.getQuantity()%></td>
 							<td class="text-center align-middle"><%=totalprice%></td>
-							<td class="text-center align-middle"><button type="button"
+							<td class="text-center align-middle">
+							<form method="post" id="cartData"action="cartProc.jsp">
+								<button type="button"
 									class="btn align-middle" onclick="deleteCart(this.form)">
 									<i class="bi bi-trash fs-2"></i>
-								</button></td>
-							<input type="hidden" name="flag">
-							<input type="hidden" name="cartNo">
+								</button>
+							<input type="hidden" name="flag"/>
+							<input type="hidden" name="productPrice"value="<%=pbean.getPrice()%>"/>
+							<input type="hidden" name="productQuantity" value="<%=bean.getQuantity()%>"/>
+							<input type="hidden" name="cartNo"value="<%=bean.getNo() %>"/>
 							<input type="hidden" name="productNo"
-								value="<%=pbean.getIdx()%>">
-
+								value="<%=pbean.getIdx()%>"/>
+								</form></td>
+								
 						</tr>
-						</form>
+				
 						<%
 						}
 						%>
@@ -141,9 +145,9 @@ double discount = 0;
 					</tbody>
 				</table>
 			</div>
-			<div>
-				<button class="btn" onclick="buyCart(this.form)">구매하기</button>
-				<button class="btn" onclick="buyCart(this.form)">쇼핑계속하기</button>
+			<div align="center">
+				<button class="btn" onclick="buyCart()">구매하기</button>
+				<button class="btn" onclick="toStore()">쇼핑계속하기</button>
 			</div>
 		</div>
 

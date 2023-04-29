@@ -28,10 +28,10 @@ public class saleMgr {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, bean.getId());
 			pstmt.setInt(2, bean.getProductNo());
-			pstmt.setInt(3, bean.getType());
+			pstmt.setInt(3, bean.getType());//영화관람권인지 일반 상품인지 확인
 			pstmt.setInt(4, bean.getQuantity());
 			pstmt.setInt(5, bean.getPrice());
-			pstmt.setString(6, bean.getPatdt());
+			pstmt.setString(6, bean.getPaydt());
 			pstmt.setInt(7, bean.getPaymethod());
 			pstmt.setInt(8, bean.getPaystate());
 

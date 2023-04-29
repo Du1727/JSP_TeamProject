@@ -16,6 +16,10 @@ LocalDate date = LocalDate.now();
 saleBean bean = new saleBean();
 bean.setId(id);
 bean.setProductNo(UtilMgr.parseInt(request, "productNo"));
+bean.setType(0);
+bean.setPrice(UtilMgr.parseInt(request, "productPrice"));
+bean.setQuantity(UtilMgr.parseInt(request, "productQuantity"));
+
 bean.setPaystate(0);//결제 안된상태 = 0, 결제된 상태 = 1
 int cartNo = UtilMgr.parseInt(request, "cartNo");
 
@@ -31,10 +35,7 @@ if (flag.equals("delete")) {
 	msg = "결제창으로 넘어갑니다";
 	sMgr.addSale(bean);
 	destination = "";
-} else if (flag.equals("buy")) {
-	msg = "스토어으로 넘어갑니다";
-	destination = "store_main.jsp";
-}
+} 
 %>
 
 <script>

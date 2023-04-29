@@ -90,6 +90,11 @@
 			<div class="container fixed-top" align="right">
 				<br>
 				<%if(logged) {%>
+					<i class="bi bi-cart-plus"
+						style="font-size: 1.2rem; color: rgb(200, 200, 200);"></i> <a
+						href="cart.jsp"
+						style="color: rgb(200, 200, 200); text-decoration-line: none;">장바구니</a>
+					&nbsp;&nbsp;&nbsp;&nbsp;<a style="color: rgb(200, 200, 200);">|</a>&nbsp;&nbsp;&nbsp;
 					<i class="bi bi-person-fill"
 						style="font-size: 1.2rem; color: rgb(200, 200, 200);"></i> <a
 						href="logout.jsp"

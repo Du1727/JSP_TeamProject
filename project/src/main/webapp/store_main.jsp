@@ -99,9 +99,12 @@ String[] category = mgr.getCategory();
 		var myBookId = $(this).data('id');
 		$(".modal-body #bookId").val(myBookId);
 	});
+	
 	function productInsert(){
-        window.open("/store_insert.jsp", "물품 추가", "width=500, height=700")
+        window.open("store_insert.jsp", "상품 추가", "width=500, height=700");
+        
     }
+	
 	
 </script>
 <%@include file="/navbar-white.jsp"%>
@@ -139,9 +142,11 @@ String[] category = mgr.getCategory();
 			<div>
 				<h3 class="border-bottom border-2" id="store<%=i%>>">
 					<%=category[i]%>
-					<button type="button" class="btn customBtn">
+					
+					<button type="button" class="btn customBtn" onclick="productInsert()">
 						<i class="bi bi-plus-circle fs-2"></i>
 					</button>
+				
 
 				</h3>
 				<div class="row row-cols-1 row-cols-xs-3 g-4"
