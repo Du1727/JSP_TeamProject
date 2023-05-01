@@ -1,6 +1,10 @@
-<%@page import="controller.Parsing"%>
+<%@page import="java.util.Vector"%>
+<%@page import="movie.OfficeBean"%>
 <%@page contentType="text/html; charset=UTF-8"%>
-
+<jsp:useBean id="movieMgr2" class="movie.MovieMgr"></jsp:useBean>
+<%	
+	Vector<OfficeBean> vlist3 = movieMgr2.loadOfficeMovie();	
+%>
 <footer class="section-text-white footer footer-links bg-darken">
     <div class="footer-body container" style="background-color: rgb(51, 51, 51);">
         <div class="row">
@@ -16,14 +20,11 @@
             </div>
             <div class="col-sm-6 col-lg-3">
                 <h5 class="footer-title text-uppercase">Movies</h5>
-                <ul class="list-unstyled list-wide footer-content">
-            		<%
-            		Parsing parsing2 = new Parsing();
-            		String[][] boxList2 = parsing2.getMovieData();
-            		for(int i = 0; i < boxList2.length; i++) {
-            		%>
+                <ul class="list-unstyled list-wide footer-content">            		
+                    <%for(int i = 0; i < vlist3.size(); i++) {
+                    	OfficeBean bean3 = vlist3.get(i);	%>
                     <li>
-                        <a class="content-link" href="#"><%=boxList2[i][0]%></a>
+                        <a class="content-link" href="#"><%=bean3.getName()%></a>
                     </li>
                     <% } %>
                 </ul>

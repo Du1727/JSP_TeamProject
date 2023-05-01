@@ -34,7 +34,6 @@ public class MemberMgr {
 		return flag;
 		
 	}
-	
 	public Vector<MemberBean> getMemberAll(){
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -135,7 +134,6 @@ public class MemberMgr {
 			con = pool.getConnection();
 			sql = "select * from member where id=?";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				bean.setId(rs.getString("id"));
