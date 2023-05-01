@@ -7,7 +7,9 @@
 <jsp:useBean id="mgr" class="store.storeMgr"></jsp:useBean>
 
 <%
+int productNo = UtilMgr.parseInt(request, "productNo");
 storeBean bean = new storeBean();
+bean = mgr.getProduct(productNo);
 String[] category = mgr.getCategory(); 
 %>
 <!doctype html>
@@ -20,7 +22,7 @@ String[] category = mgr.getCategory();
 <meta name="author"
 	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 <meta name="generator" content="Hugo 0.111.3">
-<title>Blog Template · Bootstrap v5.3</title>
+<title>제품 정보 수정</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 <script
@@ -72,19 +74,19 @@ String[] category = mgr.getCategory();
 				<label for="productName" class="form-label">상품명</label>
 				<input type="text" class="form-control"
 					id="productName" name="productName" placeholder="name@example.com"
-					style="width: 300px; height: 40px;">
+					style="width: 300px; height: 40px;"value="<%=bean.getName()%>">
 			</div>
 			<div class="mb-3">
 				<label for="productDetail" class="form-label">상품정보</label>
 				<input type="text" class="form-control"
 					id="productDetail" name="productDetail"placeholder="ex)카라멜팝콘(M)"
-					style="height: 40px;">
+					style="height: 40px;"value="<%=bean.getDetail()%>">
 			</div>
 			<div class="mb-3">
 				<label for="productPrice" class="form-label">가격</label>
 				<input type="text" class="form-control"
 					id="productPrice" name="productPrice"placeholder="10,000"
-					style="width: 300px; height: 40px;"value="10000">
+					style="width: 300px; height: 40px;"value="<%=bean.getPrice() %>">
 			</div>
 			<div class="row">
 				<div class="col g-col-4">
@@ -92,7 +94,7 @@ String[] category = mgr.getCategory();
 						<label for="productCategory" class="form-label">카테고리</label>
 						<select class="form-select" aria-label="Default select example"
 							id="productCategory" name="productCategory"style="width: 100px; height: 40px;">
-							<option selected style="text-align: center;" value="no">-선택-</option>
+							<option selected style="text-align: center;" value="stay"><%=bean.getCategory() %>></option>
 							<%for(int i=0;i<category.length;i++){ %>
 							<option style="text-align: center;" value="<%=category[i]%>"><%=category[i]%></option>
 							
@@ -106,7 +108,7 @@ String[] category = mgr.getCategory();
 							여부</label>
 						<div class="form-check form-switch">
 							<input class="form-check-input" type="checkbox"
-								id="productStatus" name="productStatus">
+								id="productStatus" name="productStatus"value="on">
 						</div>
 					</div>
 				</div>

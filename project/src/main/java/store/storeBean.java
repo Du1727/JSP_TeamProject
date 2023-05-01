@@ -8,6 +8,7 @@ public class storeBean {
 	private int price;
 	private String category;
 	private int status;
+	private int highlight;
 	 
 	public int getIdx() {
 		return idx;
@@ -52,6 +53,12 @@ public class storeBean {
 	}
 	public void setStatus(int status) {
 		this.status = status;
+	}
+	public int getHighlight() {
+		return highlight;
+	}
+	public void setHighlight(int highlight) {
+		this.highlight = highlight;
 	}
 	
 	

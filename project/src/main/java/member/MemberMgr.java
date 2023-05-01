@@ -34,6 +34,7 @@ public class MemberMgr {
 		return flag;
 		
 	}
+	
 	public Vector<MemberBean> getMemberAll(){
 		Connection con = null;
 		PreparedStatement pstmt = null;

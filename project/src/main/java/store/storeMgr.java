@@ -147,13 +147,14 @@ public class storeMgr {
 			pstmt.setInt(1, idx);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				// name,detail,price,type,status,image
+				// name,detail,price,type,status,image,highlight
 				bean.setDetail(rs.getString("detail"));
 				bean.setName(rs.getString("name"));
 				bean.setImage(rs.getString("image"));
 				bean.setPrice(rs.getInt("price"));
 				bean.setStatus(rs.getInt("status"));
 				bean.setCategory(rs.getString("category"));
+				bean.setHighlight(rs.getInt("highlight"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

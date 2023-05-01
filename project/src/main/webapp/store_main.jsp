@@ -14,7 +14,9 @@ String id = (String) session.getAttribute("idKey");
 MemberBean mbean = new MemberBean();
 mbean = mmgr.getMember(id);
 String authority = mbean.getAuthority();
+authority = "admin";
 String[] category = mgr.getCategory();
+System.out.print(authority);
 %>
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
@@ -52,7 +54,7 @@ String[] category = mgr.getCategory();
 <style type="text/css">
 </style>
 <script>
-
+	
 	function sendCart() {
 		var product = document.getElementById('productIdx').value;
         document.getElementById('form-d').submit();	
@@ -101,10 +103,12 @@ String[] category = mgr.getCategory();
 	});
 	
 	function productInsert(){
-        window.open("store_insert.jsp", "상품 추가", "width=500, height=700");
-        
+        window.open("store_insert.jsp", "상품 추가", "width=500, height=600");
     }
-	
+	function productUpdate(){
+		var productNo = $("input[name='productNo']").val();
+        window.open("store_update.jsp?${productNo}", "상품 정보 수정", "width=500, height=600");
+    }
 	
 </script>
 <%@include file="/navbar-white.jsp"%>
@@ -142,11 +146,12 @@ String[] category = mgr.getCategory();
 			<div>
 				<h3 class="border-bottom border-2" id="store<%=i%>>">
 					<%=category[i]%>
-					
-					<button type="button" class="btn customBtn" onclick="productInsert()">
+
+					<button type="button" class="btn customBtn"
+						onclick="productInsert()">
 						<i class="bi bi-plus-circle fs-2"></i>
 					</button>
-				
+
 
 				</h3>
 				<div class="row row-cols-1 row-cols-xs-3 g-4"
@@ -158,38 +163,55 @@ String[] category = mgr.getCategory();
 					for (int j = 0; j < vlist.size(); j++) {
 						storeBean bean = vlist.get(j);
 					%>
+
 					<div class="card" style="width: 18rem;">
 						<div class="product text-center" style="height: 200px">
+
+							<%
+							if (authority == "admin") {
+							%>
+							<form>
 							<a class="open-productDetail nav-link mx-auto"
-								style="width:16rem;height: 16rem;"
-								onclick="modal('<%=bean.getName()%>','<%=bean.getDetail()%>',<%=bean.getPrice()%>,<%=bean.getIdx()%>)">
+								style="width: 16rem; height: 16rem;" onclick="producUpdate()">
 								<figure>
 									<img class="embed-responsive-item"
 										src="images/parts/store_combo_1.png"
 										style="width: 200px; height: 200px;">
 
 									<figcaption>
-										<%
-										if (authority == "admin") {
-										%>
 										<i class="bi bi-pencil-square fs-3"></i>
-										<%
-										} else {
-										%>
-										<i class="bi bi-cart-plus fs-3"></i>
-										<%
-										}
-										%>
+										<input type="hidden" name="productNo" id="productNo" value="<%=bean.getIdx()%>" />
 									</figcaption>
 								</figure>
 							</a>
+							</form>
+							<%
+							} else {
+							%>
+							<a class="open-productDetail nav-link mx-auto"
+								style="width: 16rem; height: 16rem;"
+								onclick="modal('<%=bean.getName()%>','<%=bean.getDetail()%>',<%=bean.getPrice()%>,<%=bean.getIdx()%>)">
+								<figure>
+									<img class="embed-responsive-item"
+										src="images/parts/store_combo_1.png"
+										style="width: 200px; height: 200px;">
+									<figcaption>
+										<i class="bi bi-cart-plus fs-3"></i>
+									</figcaption>
+								</figure>
+							</a>
+							<%
+							}
+							%>
 						</div>
 						<div class="col p-4 d-flex flex-column position-static">
-							<div class="mb-1 text-body-secondary text-center"style="font-size: 20px;"><%=bean.getName()%></div>
-							<p class="card-text mb-auto text-center"style="font-size: 20px;"><%=bean.getDetail()%></p>
-							<p class="card-text mb-auto text-center"style="font-size: 20px;"><%=UtilMgr.monFormat(bean.getPrice())%></p>
+							<div class="mb-1 text-body-secondary text-center"
+								style="font-size: 20px;"><%=bean.getName()%></div>
+							<p class="card-text mb-auto text-center" style="font-size: 20px;"><%=bean.getDetail()%></p>
+							<p class="card-text mb-auto text-center" style="font-size: 20px;"><%=UtilMgr.monFormat(bean.getPrice())%></p>
 						</div>
 					</div>
+
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<%
 					}
