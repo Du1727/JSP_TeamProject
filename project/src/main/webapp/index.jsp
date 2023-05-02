@@ -17,6 +17,12 @@
 
 <!DOCTYPE html>
 <html>
+	<script type="text/javascript">
+		function search(t) {
+			document.movieFrm.title.value=t; 
+			document.movieFrm.submit();
+		}
+	</script>
 	<head>
 		<%@include file ="navbar-black.jsp" %>	
 	</head>
@@ -33,15 +39,15 @@
                             <article class="movie-line-entity">
                                 <div class="entity-preview">
                                     <div class="embed-responsive embed-responsive-16by9" style="width: 750px; height: 750px;">
-                                        <img class="embed-responsive-item" style=" padding-left: 250px; padding-top: 50px;" src=<%=bean.getPhoto()%> alt="" />
+                                        <a href="javascript:search('<%=bean.getName()%>')"><img class="embed-responsive-item" style=" padding-left: 250px; padding-top: 50px;" src=<%=bean.getPhoto()%> alt="" /></a>
                                     </div>
                                 </div>
                                 <div class="entity-content" style=" padding-left: 220px;">
                                     <h4 class="entity-title">
-                                        <a class="content-link" href="movie-info-sidebar-right.html"><%=bean.getName()%></a>
+                                        <a class="content-link" href="javascript:search('<%=bean.getName()%>')"><%=bean.getName()%></a>
                                     </h4>
                                     <div class="entity-category">
-                                        <a class="content-link"><%=bean.getOpendt()%></a>
+                                        <a class="content-link"><%=bean.getGenre()%></a>
                                     </div>
                                     <div class="entity-info">
                                         <div class="info-lines">
@@ -52,7 +58,7 @@
                                             </div>         
                                             <div class="info info-short">
                                                 <span class="text-theme info-icon"><i class="fas fa-calendar-alt"></i></span>
-                                                <span class="info-text"><%=bean.getGenre()%></span>
+                                                <span class="info-text"><%=bean.getOpendt()%></span>
                                             </div>
                                             <div class="info info-short">
                                                 <span class="text-theme info-icon"><i class="fas fa-clock"></i></span>
@@ -114,10 +120,10 @@
                                             </a>
                                         </div>
                                         <h4 class="entity-title">
-                                            <a class="content-link" href="movie-info-sidebar-right.html"><%=bean.getName()%></a>
+                                            <a class="content-link" href="javascript:search('<%=bean.getName()%>')"><%=bean.getName()%></a>
                                         </h4>
                                         <div class="entity-category">
-                                            <a class="content-link" href="movies-blocks.html"><%=bean.getGenre()%></a>
+                                            <a class="content-link"><%=bean.getGenre()%></a>
                                         </div>
                                         <div class="entity-info">
                                             <div class="info-lines">
@@ -204,6 +210,9 @@
 				</div>
             </div>
         </section>
+		<form name="movieFrm" method="post" action="moviedetail.jsp">
+			<input type="hidden" name="title" value="">
+		</form>
     </body>
     <%@include file = "footer.jsp" %>
 </html>

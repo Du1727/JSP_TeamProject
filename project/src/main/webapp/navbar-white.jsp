@@ -7,7 +7,7 @@
 %>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="viewport" content="initial-scale=1, shrink-to-fit=no" />
 	<title>Dongeui Cinema</title>
 	<!-- Bootstrap -->
 	<link href="./bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
@@ -67,7 +67,7 @@
 	            <ul class="navbar-nav text-uppercase ms-1">
 	                <li class="nav-item"><a class="nav-link" href="../WEB-INF/store/store_main.jsp" style="color: rgb(30,30,30); font-size: 1.05em; font-family: 배달의민족 도현; padding-left: 45px;">스토어</a></li>
 	                <li class="nav-item"><a class="nav-link" href="../WEB-INFevent/event_main.jsp" style="color: rgb(30,30,30); font-size: 1.05em; font-family: 배달의민족 도현; padding-left: 25px">이벤트</a></li>
-	                <li class="nav-item"><a class="nav-link" href="../WEB-INF/board/boardList.jsp" style="color: rgb(30,30,30); font-size: 1.05em; font-family: 배달의민족 도현; padding-left: 25px">문의사항</a></li>
+	                <li class="nav-item"><a class="nav-link" href="boardList.jsp" style="color: rgb(30,30,30); font-size: 1.05em; font-family: 배달의민족 도현; padding-left: 25px">문의사항</a></li>
                  </ul>
              </div>
          </div>

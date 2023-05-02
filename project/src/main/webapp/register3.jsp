@@ -1,6 +1,7 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 
 <%
+	request.setCharacterEncoding("UTF-8");
 	String id = (String)session.getAttribute("idKey");
 %>
 
@@ -27,6 +28,7 @@
 <%@include file ="navbar-white.jsp" %>
 </head>
 <body>
+
     <div class="container" id="login">
         <div class="row justify-content-center">
 	        <div class="col-lg-8">

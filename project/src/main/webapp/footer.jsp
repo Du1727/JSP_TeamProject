@@ -1,70 +1,42 @@
 <%@page import="java.util.Vector"%>
 <%@page import="movie.OfficeBean"%>
 <%@page contentType="text/html; charset=UTF-8"%>
-<jsp:useBean id="movieMgr2" class="movie.MovieMgr"></jsp:useBean>
-<%	
-	Vector<OfficeBean> vlist3 = movieMgr2.loadOfficeMovie();	
-%>
+
+
 <footer class="section-text-white footer footer-links bg-darken">
     <div class="footer-body container" style="background-color: rgb(51, 51, 51);">
-        <div class="row">
-            <div class="col-sm-6 col-lg-3">
-                <a class="footer-logo" href="./" style="padding-left: 50px; width: 220px; height: 107px;">
-                    <img src='https://ifh.cc/g/spGd0K.png' border='0' alt="..." />
-                </a>
-                <div class="footer-content">
-                    <p class="footer-text">부산광역시 부산진구 엄광로 176 (가야동),
-                        <br/>가야동 467 동의대학교 중앙도서관</p>
-                    <p class="footer-text">Tel:&nbsp;&nbsp;(010) 1234-5678</p>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <h5 class="footer-title text-uppercase">Movies</h5>
-                <ul class="list-unstyled list-wide footer-content">            		
-                    <%for(int i = 0; i < vlist3.size(); i++) {
-                    	OfficeBean bean3 = vlist3.get(i);	%>
-                    <li>
-                        <a class="content-link" href="#"><%=bean3.getName()%></a>
-                    </li>
-                    <% } %>
-                </ul>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <h5 class="footer-title text-uppercase">Creator</h5>
-                <ul class="list-unstyled list-wide footer-content">
-                    <li>
-                        <a class="content-link" style="text-decoration-line: none;" href="#">NAMJU KIM</a>
-                    </li>
-                    <li>
-                        <a class="content-link" style="text-decoration-line: none;" href="#">MYUNGJUN SONG</a>
-                    </li>
-                    <li>
-                        <a class="content-link" style="text-decoration-line: none;" href="#">TAEMIN JANG</a>
-                    </li>
-                    <li>
-                        <a class="content-link" style="text-decoration-line: none;" href="#">HEEON KIM</a>
-                    </li>
-                    <li>
-                        <a class="content-link" style="text-decoration-line: none;" href="#">HONGGYU KIM</a>
-                    </li>
-                    <li>
-                        <a class="content-link" style="text-decoration-line: none;" href="#">SANGMEE LEE</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <h5 class="footer-title text-uppercase">GitHub</h5>
-                <ul class="list-wide footer-content list-inline">
-                    <li class="list-inline-item">
-                        <a class="content-link" href="#"><i class="bi bi-github"></i></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        		  <div class="row align-items-center" style="height: 107px;">
+			   <div class="col-2">
+			   		<a class="footer-logo" href="./" style="width: 220px; height: 107px;">
+			            <img src='https://ifh.cc/g/spGd0K.png' border='0' alt="..." />
+			        </a>
+			   </div>
+			   <div class="col-7" style=" display: table-cell; vertical-align: middle;">
+			      <p class="footer-text" style="text-align: left;">  &nbsp;&nbsp;&nbsp;부산광역시 부산진구 가야동 산22-2,8층 (동의대학교, 중앙도서관)  &nbsp;TEL (051) 123-4567
+			      <br>  &nbsp; &nbsp;동의대학교 평생교육원 · 자바기반IoT융합서비스 개발자 양성과정
+			      <br>  &nbsp; &nbsp;COPYRIGHT © 2023 C Team. All rights reserved.
+			   </div>
+			   <div class="col-3 align-self-start" style="text-align: right; padding-top: 10px; " >
+			         <a class="content-link" href="https://github.com/Du1727/JSP_TeamProject" style="text-decoration: none;	color: inherit;"><i class=""></i>
+	                       <img class="bi bi-github" src="/DEC/github_icon.jpg" alt="" width="50" height="30" style="padding-right: 20px;">                       
+	                 </a>
+	   	       </div>
+		  </div>
+		  
+		   <div>
+		    <ul class="nav justify-content-center border-bottom pb-3 mb-3" style="color: white;" >
+		      <li class="nav-item"><a href="https://github.com/" style="color: rgb(225, 225, 225); text-decoration-line: none;">NAMJU KIM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+		      <li class="nav-item"><a href="https://github.com/" style="color: rgb(225, 225, 225); text-decoration-line: none;">MYUNGJUN SONG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+		      <li class="nav-item"><a href="https://github.com/" style="color: rgb(225, 225, 225); text-decoration-line: none;">TAEMIN JANG&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+		      <li class="nav-item"><a href="https://github.com/" style="color: rgb(225, 225, 225); text-decoration-line: none;">HEEON KIM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+		      <li class="nav-item"><a href="https://github.com/" style="color: rgb(225, 225, 225); text-decoration-line: none;">HONGGYU KIM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+		      <li class="nav-item"><a href="https://github.com/" style="color: rgb(225, 225, 225); text-decoration-line: none;">SANGMEE LEE</a></li>
+		    </ul>
+		    <br>
+		    <a>&copy; 2023 Company, Inc</a>
+		 </div>
     </div>
-    <div class="footer-copy">
-        <div class="container">Copyright 2023 &copy; C Team. All rights reserved.</div>
-    </div>
+    <div class="container">&nbsp;</div>
 </footer>
 
 <!-- jQuery library -->
