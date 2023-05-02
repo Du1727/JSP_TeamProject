@@ -1,0 +1,70 @@
+*{ padding: 0; margin: 0; }
+li{ list-style: none; }
+
+.product{
+	text-align: center;
+ width: 100%; height: 100%; margin: 0 auto;
+  overflow: hidden;
+}
+
+.product li{
+
+  width: 200px; height: 200px;
+
+}
+.product li:last-child{ margin-right: 0; }
+
+.product a{
+  display: block; /* 영역적용위해 사용 */
+  
+  text-align: center;
+  overflow: hidden;
+
+  position: relative; /* absolute의 기본기준은 body로 처리 - 현재 요소로 기준변경 */
+}
+
+
+.product figure{
+  width: 100%; height: 100%;
+}
+.product figcaption{
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.7);
+
+  position: absolute; /* 이미지와 겹치게 처리 */
+  top: 0; left: 0;
+
+  color: #fff; text-align: center;
+  opacity: 0; /* 처음엔 안보이고 */
+  transition: 0.3s;
+  cursor: hand;
+}
+
+.product a:hover figcaption{
+  /* 마우스를 올리면 보이게 처리 */
+  opacity: 1;
+  cursor: hand;
+}
+.nav-scroller py-1 mb-2{
+	font-family : "배달의민족 도현";
+}
+.a {
+		text-decoration-line: none;
+}
+
+.customBtn:active, .customBtn:focus {
+outline:none !important;
+box-shadow:none !important;}
+
+.bi-plus{
+    font-size: 20px;
+}
+.bi-minus{
+    font-size: 20px;
+}
+body {
+    font-family: '배달의민족 도현';
+}
+
+
+

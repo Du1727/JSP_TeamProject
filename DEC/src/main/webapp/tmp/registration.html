@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>문의하기</title>
+<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+
+<body>
+<main >
+	<div align="center">
+	<br/>
+		<h4>문의 등록하기</h4>
+		<hr>
+	</div>
+	
+	<form name="registration" method="post" action="registrationProc.jsp">
+		
+<!-- 
+			<div class="col-md-5">
+				<label for="choose1" class="form-label">분류*</label> <select
+					name="choose1" class="form-select" id="choose1" required>
+					<option value="">분류선택</option>
+					<option>영화관</option>
+					<option>영화</option>
+					<option>예매/결재</option>
+					<option>홈페이지</option>
+					<option>이벤트</option>
+					<option>개인정보</option>
+
+				</select>
+
+			</div>
+
+			<div class="col-md-4">
+				<label for="choose2" class="form-label">문의종류*</label> <select
+					name="choose2" class="form-select" id="choose2" required>
+					<option value="">문의선택</option>
+					<option>문의</option>
+					<option>칭찬</option>
+					<option>불만</option>
+					<option>건의</option>
+				</select>
+
+			</div>
+ -->
+			<div class="col-12">
+				<label for="title" class="form-label">제목*</label> <input
+					name="rBean" name="subject" type="text" class="form-control" id="title"
+					placeholder="제목을 입력해 주세요" required>
+
+			</div>
+<br/>
+			<div class="col-12">
+				<label for="content" class="form-label">내용*</span></label>
+				<textarea name="rBean" property="content" rows="5" cols="50" class="form-control"
+					aria-label="With textarea" placeholder="내용을 입력해 주세요" required></textarea>
+
+			</div>
+<br/>
+
+<div class="form-check">
+			  <input name="rBean" property="secret" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+			  <label class="form-check-label" for="flexCheckDefault">
+			    비밀글
+			  </label>
+			</div>
+				<br/>
+			<div class="input-group mb-3">
+				<input type="file" name="rBean" property="filename" class="form-control"
+					id="inputGroupFile02">
+
+			</div>
+			<br/>
+			
+				
+			<div align="center">
+		
+			<button type="button" class="btn btn-outline-dark">취소</button>
+			<button  type="submit" class="btn btn-dark">등록</button>
+	
+	</div>
+</form>
+
+
+<form name="hidnFrm">
+	<input type="hidden" name="rBean" property="id" value="aaa">
+</form>
+
+</main>
+</body>
+</html>

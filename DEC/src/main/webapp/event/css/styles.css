@@ -1,0 +1,16 @@
+@charset "UTF-8";
+.title-top list{
+	margin-left: auto;
+}
+
+.divider {
+        height: 30px;
+}
+
+.container {
+  width: 960px;
+  max-width: none !important;
+}
+.card{
+	width:240px;
+}
