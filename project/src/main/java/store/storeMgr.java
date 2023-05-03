@@ -132,6 +132,37 @@ public class storeMgr {
 		}
 		return vlist;
 	}
+	
+	//하이라이트 가져오기
+	public Vector<storeBean> getHighLight() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		Vector<storeBean> vlist = new Vector<storeBean>();
+		try {
+			con = pool.getConnection();
+			sql = "select * from product where highlight = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, 1);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				storeBean bean = new storeBean();
+				bean.setIdx(rs.getInt("idx"));
+				bean.setDetail(rs.getString("detail"));
+				bean.setName(rs.getString("name"));
+				bean.setImage(rs.getString("image"));
+				bean.setPrice(rs.getInt("price"));
+				bean.setStatus(rs.getInt("status"));
+				vlist.addElement(bean);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		return vlist;
+	}
 
 	// 제품 하나 선택
 	public storeBean selectProduct(int idx) {
@@ -267,7 +298,7 @@ public class storeMgr {
 		storeBean bean = new storeBean();
 		try {
 			con = pool.getConnection();
-			sql = "select idx,name,detail,price,category,status,image " + "from Product where idx=?";
+			sql = "select idx,name,detail,price,category,status,image,highlight " + "from Product where idx=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();
@@ -278,6 +309,7 @@ public class storeMgr {
 				bean.setPrice(rs.getInt("price"));
 				bean.setCategory(rs.getString("category"));
 				bean.setStatus(rs.getInt("status"));
+				bean.setHighlight(rs.getInt("highlight"));
 				bean.setImage(rs.getString("image"));
 			}
 		} catch (Exception e) {
@@ -315,6 +347,7 @@ public class storeMgr {
 		storeMgr mgr = new storeMgr();
 		storeBean bean = new storeBean();
 		Vector<storeBean> vlist = mgr.productAll();
+		
 
 	}
 

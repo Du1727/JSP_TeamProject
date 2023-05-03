@@ -119,6 +119,7 @@ public class cartMgr {
 		}
 		return flag;
 	}
+	
 	//결제 완료했을 시에 그 아이디와 관련된 내역 삭제
 	public boolean deleteCart(String id) {
 		Connection con = null;

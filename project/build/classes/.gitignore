@@ -1,4 +1,11 @@
+/board/
+/dbcon/
+/dec/
+/utils/
+/controller/
 /member/
-/store/
+/movie/
 /sale/
 /servlet/
+/store/
+/ticketing/

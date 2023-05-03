@@ -39,38 +39,31 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/5.3.0/ekko-lightbox.min.js"></script>
 <%
 request.setCharacterEncoding("UTF-8");
+String city = (String) session.getAttribute("selectCity");
+String section = (String) session.getAttribute("selectSection");
+String screen = (String) session.getAttribute("selectScreen");
+String flag= request.getParameter("flag");
 
-storeBean bean = new storeBean();
-String msg = request.getParameter("productHighLgiht");
-bean.setName(request.getParameter("productName"));
-bean.setDetail(request.getParameter("productDetail"));
-bean.setPrice(UtilMgr.parseInt(request,"productPrice"));
-bean.setCategory(request.getParameter("productCategory"));
-bean.setHighlight(UtilMgr.parseInt(request, "productHighLight"));
-bean.setStatus(UtilMgr.parseInt(request, "productStatus"));
-int idx = UtilMgr.parseInt(request, "productNo");
-if(request.getParameter("productStatus")==null){
-	bean.setStatus(0);	
-}else{
-	bean.setStatus(1);
+String selectCity = request.getParameter("cityChoice");
+session.setAttribute("selectCity", selectCity);
+
+//드롭다운으로 선택한 city
+
+String selectSection = request.getParameter("theaterChoice");
+String selectScreen = request.getParameter("screenChoice");
+if(flag.equals("reset")){
+	selectSection="";
+	selectScreen="";
+	
 }
-if(request.getParameter("productHighLgiht")==null){
-	bean.setHighlight(0);	
-}else{
-	bean.setHighlight(1);
-}
-String flag = request.getParameter("flag");
-String message = "실패했습니다.";
-if (flag.equals("delete")) {
-	msg = "상품 정보를 삭제했습니다.";
-	Mgr.deleteProduct(idx);
-
-} else if (flag.equals("update")) {
-	msg = "상품 정보를 업데이트 했습니다";
-
-} 
+session.setAttribute("selectScreen", selectScreen);
+session.setAttribute("selectSection", selectSection);
 %>
 
+
+</head>
+
 <script>
-	alert("<%=msg%>");
+	alert("<%=flag%>");
+	location.href = "movie_insert.jsp";
 </script>

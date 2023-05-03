@@ -93,4 +93,42 @@ public class MovieMgr {
 		}
 		return vlist;
 	}	
+	//단일 영화 정보
+	public MovieBean loadMovie(int movieIdx){
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		MovieBean bean = new MovieBean();
+  		try {
+			con = pool.getConnection();
+			sql = "select * from movieinfo where idx = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, movieIdx);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				
+				bean.setIdx(rs.getInt("idx"));
+				bean.setName(rs.getString("name"));
+				bean.setDirector(rs.getString("director"));
+				bean.setActor(rs.getString("actor"));
+				bean.setGenre(rs.getString("genre"));
+				bean.setIntro(rs.getString("intro"));
+				bean.setOpendt(rs.getString("opendt"));
+				bean.setEnddt(rs.getString("enddt"));
+				bean.setPhoto(rs.getString("photo"));
+				bean.setRuntime(rs.getString("runtime"));
+				bean.setTrailer(rs.getString("trailer"));
+				bean.setAgelimit(rs.getString("agelimit"));
+				bean.setVote(rs.getString("vote"));
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		return bean;
+	}	
+	
 }
