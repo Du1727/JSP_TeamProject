@@ -23,17 +23,14 @@ public class saleMgr {
 		boolean flag=false;
 		try {
 			con = pool.getConnection();
-			sql = "insert sale(id,productNo,type,quantity,price,paydt,paymethod,paystate)"
+			sql = "insert sale(id,productNo,quantity,price,paydt)"
 					+ "values(?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, bean.getId());
 			pstmt.setInt(2, bean.getProductNo());
-			pstmt.setInt(3, bean.getType());//영화관람권인지 일반 상품인지 확인
-			pstmt.setInt(4, bean.getQuantity());
-			pstmt.setInt(5, bean.getPrice());
-			pstmt.setString(6, bean.getPaydt());
-			pstmt.setInt(7, bean.getPaymethod());
-			pstmt.setInt(8, bean.getPaystate());
+			pstmt.setInt(3, bean.getQuantity());
+			pstmt.setInt(4, bean.getPrice());
+			pstmt.setString(5, bean.getPaydt());
 
 			if(pstmt.executeUpdate()==1) {
 				flag = true;

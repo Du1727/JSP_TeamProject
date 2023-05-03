@@ -11,7 +11,6 @@
 <jsp:useBean id="tMgr" class="ticketing.TicketingMgr"/>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
-session.setMaxInactiveInterval(30);
 String id = (String) session.getAttribute("idKey");
 String movieIdx = (String) session.getAttribute("movieIdx");
 System.out.println("movieIdx: "+movieIdx);	
@@ -838,7 +837,7 @@ function submitToSelectSeat() {
 									<%
 									for (int i = 0; i < theaterList.size(); i++) {
 									%>
-									<tr>
+									<tr align="center" style="font-size: 20px;">
 										<td <%if(theaterList.get(i).equals(sectionNm)){%>
 											style="background: lightgray;" <%}%>><a
 											href="javascript:selectSection('<%=theaterList.get(i)%>')"
