@@ -3,11 +3,12 @@
 	boolean logged = false;
 	if(session.getAttribute("idKey") != null){
 		logged = true;
-	}	
+	}
+	
 %>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="viewport" content="initial-scale=1, shrink-to-fit=no" />
 	<title>Dongeui Cinema</title>
 	<!-- Bootstrap -->
 	<link href="./bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
@@ -37,17 +38,11 @@
 	<!-- Core theme CSS (includes Bootstrap)-->
 	<link href="css/styles.css" rel="stylesheet" />  
 	
-	
-	
-	
     <div class="section-title"
          style="color: white; background-color: rgb(255, 255, 255); padding-left: 58px;">
          <div class="container" align="right">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br> 
-			<%if(logged) {%>		
-			<i class="bi bi-cart" style="font-size: 1.2rem; color: rgb(0, 0, 0);"></i>          
-				<a href="login.jsp" style="color: rgb(20, 20, 20); text-decoration-line: none;">장바구니</a>				
-	            &nbsp;&nbsp;&nbsp;&nbsp;<a style="color: rgb(50, 50, 50);">|</a>&nbsp;&nbsp;&nbsp;   	
+			<%if(logged) {%>			
 	            <i class="bi bi-person-fill" style="font-size: 1.2rem; color: rgb(0, 0, 0);"></i>        
 				<a href="logout.jsp" style="color: rgb(20, 20, 20); text-decoration-line: none;">로그아웃</a>
 			<%} else { %>
@@ -59,42 +54,23 @@
             <% } %>
          </div>         
     </div>  
-    
-    
-    
-    
 	<nav class="navbar navbar-expand-lg navbar-dark" id="mainNav" style="padding-left: 50px;">
 	    <div class="container" align="right" >
-	    
 	        <div class="collapse navbar-collapse" id="navbarResponsive">
 	            <ul class="navbar-nav navbar-nav justify-content-end flex-grow-1 pe-3">
-	                <li class="nav-item"><a class="nav-link" href="/DEC/ticketing/TicketingSite.jsp" 
-	                style="color: rgb(30,30,30); font-size: 1.05em; font-family: 배달의민족 도현; padding-right: 25px">예매</a></li>
-	                <li class="nav-item"><a class="nav-link" href="#move" 
-	                style="color: rgb(30,30,30); font-size: 1.05em; font-family: 배달의민족 도현; padding-right: 25px">영화</a></li>
-	                <li class="nav-item"><a class="nav-link" href="#move2" 
-	                style="color: rgb(30,30,30); font-size: 1.05em; font-family: 배달의민족 도현; padding-right: 50px">영화관</a></li>
-	            </ul>                        
-	        </div>
-	               
-	                <a class="navbar-brand" href="index.jsp">
-	                	<img src='https://ifh.cc/g/cH4QTn.png' border='0' width=100% height=100% alt="..." />
-	                </a>
-	               
+	                <li class="nav-item"><a class="nav-link" href="TicketingSite.jsp" style="color: rgb(30,30,30); font-size: 1.05em; font-family: 배달의민족 도현; padding-right: 25px">예매</a></li>
+	                <li class="nav-item"><a class="nav-link" href="movielist.jsp" style="color: rgb(30,30,30); font-size: 1.05em; font-family: 배달의민족 도현; padding-right: 25px">영화</a></li>
+	                <li class="nav-item"><a class="nav-link" href="ranklist.jsp" style="color: rgb(30,30,30); font-size: 1.05em; font-family: 배달의민족 도현; padding-right: 50px">랭킹</a></li>
+	                </ul>                        
+	                </div>
+	               <a class="navbar-brand" href="index.jsp"><img src='https://ifh.cc/g/cH4QTn.png' border='0' width=100% height=100% alt="..." /></a>
 	        <div class="collapse navbar-collapse" id="navbarResponsive">
 	            <ul class="navbar-nav text-uppercase ms-1">
-	                <li class="nav-item"><a class="nav-link" href="/DEC/store/store_main.jsp" 
-	                style="color: rgb(30,30,30); font-size: 1.05em; font-family: 배달의민족 도현; padding-left: 45px;">스토어</a></li>
-	                <li class="nav-item"><a class="nav-link" href="/DEC/event/event_main.jsp" 
-	                style="color: rgb(30,30,30); font-size: 1.05em; font-family: 배달의민족 도현; padding-left: 25px">이벤트</a></li>
-	                <li class="nav-item"><a class="nav-link" href="/DEC/board/boardList.jsp" 
-	                style="color: rgb(30,30,30); font-size: 1.05em; font-family: 배달의민족 도현; padding-left: 25px">문의사항</a></li>
-                </ul>
-            </div>
-            
+	                <li class="nav-item"><a class="nav-link" href="store_main.jsp" style="color: rgb(30,30,30); font-size: 1.05em; font-family: 배달의민족 도현; padding-left: 45px;">스토어</a></li>
+	                <li class="nav-item"><a class="nav-link" href="../WEB-INFevent/event_main.jsp" style="color: rgb(30,30,30); font-size: 1.05em; font-family: 배달의민족 도현; padding-left: 25px">이벤트</a></li>
+	                <li class="nav-item"><a class="nav-link" href="boardList.jsp" style="color: rgb(30,30,30); font-size: 1.05em; font-family: 배달의민족 도현; padding-left: 25px">문의사항</a></li>
+                 </ul>
+             </div>
          </div>
      </nav>
-     
-     
-     
      <hr width="60%" style="text-align: center; margin: 0px auto;">

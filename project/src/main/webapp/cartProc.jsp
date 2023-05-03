@@ -24,13 +24,10 @@ int cartNo = UtilMgr.parseInt(request, "cartNo");
 
 // insert, update, delete
 String flag = request.getParameter("flag");
-String msg = "";
-if (flag.equals("delete")) {
-	msg = "장바구니를 삭제 하였습니다.";
+if (flag.equals("delete")) {	
 	cMgr.deleteCart(cartNo);
 	destination = "cart.jsp";
-} else if (flag.equals("buy")) {
-	msg = "결제창으로 넘어갑니다";
+} else if (flag.equals("buy")) {	
 	destination = "";
 } else if (flag.equals("complete")) {
 	//결제 완료시 cart proc으로 귀환해서 sale 테이블에 결제정보 추가
@@ -69,8 +66,7 @@ const form = document.getElementById("cartData");
 	}
 	function toStore() {
 		location.href ="store_main.jsp";
-	}
-	alert("<%=msg%>");
+	}	
 	location.href ="<%=destination%>";
 </script>
 </head>

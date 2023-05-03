@@ -69,10 +69,10 @@ String[] category = mgr.getCategory();
 </head>
 
 <body>
-	<form method="post" action="store_insert_proc.jsp" id="productInsert">
+	<form method="post" action="RegProductServlet" name="productInsert"id="productData">
 		<div class="px-4">
 			<div class="mb-3">
-				<label for="productName" class="form-label">상품명</label>
+				<label for="productName" class="form-label" style="padding-top: 35px;">상품명</label>
 				<input type="text" class="form-control"
 					id="productName" name="productName"
 					style="width: 300px; height: 40px;">
@@ -122,11 +122,13 @@ String[] category = mgr.getCategory();
 				</div>
 			</div>
 			<div class="mb-3">
-				<label for="formFile" class="form-label">상품 이미지 추가</label> <input
-					class="form-control" type="file" id="formFile">
-			</div>
+					<label for="title" class="form-label"><B>첨부파일</B></label> <br /> <input
+						type="file" name="filename" class="form-control"
+						id="filename">
+				</div>
+		
 			<div>
-				<button type="button" class="btn" onclick="insert()">추가하기</button>
+				<button type="button" class="btn" style="background-color: #47C83E; color: white;" onclick="insert()">추가하기</button>
 				<button type="button" class="btn btn-danger" onClick="endPage()">취소하기</button>
 			</div>
 		</div>

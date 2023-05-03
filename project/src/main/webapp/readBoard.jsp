@@ -3,17 +3,22 @@
 <jsp:useBean id="bMgr" class="board.BoardMgr" />
 <%
 // 내용 가져오기
+System.out.println("@@@@@");
 int idx = Integer.parseInt(String.valueOf(session.getAttribute("idx")));
 BoardBean rBean = bMgr.getOneBoardContent(idx);
-String id = String.valueOf(session.getAttribute("id"));
+String id = String.valueOf(session.getAttribute("idKey"));
+System.out.println("[readBoard.jsp]  @@@@@@@ idKey : " + id) ;
+
 String writer_id = bMgr.getBoardWriterId(idx);
 
-System.out.println("$$$ id : " + id);
+String authority = ""; 
+authority = bMgr.checkAuthority(id);
+
 boolean admin_value = false;
-if (id.equals("admin")){
+
+if ("admin".equals(authority)){
 	admin_value = true;}
 
-System.out.println("$$$ admin_value : " + admin_value);
 
 // 비밀글 값 설정
 String secretValue;
@@ -225,11 +230,6 @@ html{
 
 				<div style="text-align: left;">
 					<label for="title" class="form-label"><B>첨부파일</B></label> <br />
-
-
-					<%
-					System.out.println(" rBean.getFilename() : " + rBean.getFilename());
-					%>
 					<%
 					if (rBean.getFilename() != null && !rBean.getFilename().equals("")) {
 					%>
@@ -295,17 +295,15 @@ html{
 				<br />
 
 				<div align="center">
-
-					<input type="hidden" name="id" value="aaa">
 					<button onclick="deleteBoard('<%=idx%>')" type="button"
 						class="btn btn-outline-dark">삭제</button>
 					<button onclick="updateBoard('<%=idx%>')"
 						class="btn btn-outline-dark">저장</button>
 					<button onclick="boardList()" type="button" class="btn btn-dark">목록</button>
-
 				</div>
-				<input type="hidden" name="idx"> <input type="hidden"
-					name="requestStatus">
+				<input type="hidden" name="idKey" value="<%=id%>">
+				<input type="hidden" name="idx"> 
+				<input type="hidden" name="requestStatus">
 
 
 

@@ -8,6 +8,7 @@ public class ScreeningInfoBean {
 	private String sectionName;
 	private int theaterNum;
 	private String screenTime;
+	private String endTime;
 	private int totalSeat;
 	private int reservedSeat;
 	private Vector<String> reservedSeatsPosition;
@@ -17,13 +18,14 @@ public class ScreeningInfoBean {
 	}
 
 	public ScreeningInfoBean(int movieIdx, String cityAddress, String sectionName, int theaterNum, String screenTime,
-			int totalSeat, int reservedSeat, Vector<String> reservedSeatsPosition) {
+			String endTime, int totalSeat, int reservedSeat, Vector<String> reservedSeatsPosition) {
 		super();
 		this.movieIdx = movieIdx;
 		this.cityAddress = cityAddress;
 		this.sectionName = sectionName;
 		this.theaterNum = theaterNum;
 		this.screenTime = screenTime;
+		this.endTime = endTime;
 		this.totalSeat = totalSeat;
 		this.reservedSeat = reservedSeat;
 		this.reservedSeatsPosition = reservedSeatsPosition;
@@ -67,6 +69,14 @@ public class ScreeningInfoBean {
 
 	public void setScreenTime(String screenTime) {
 		this.screenTime = screenTime;
+	}
+
+	public String getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
 	}
 
 	public int getTotalSeat() {

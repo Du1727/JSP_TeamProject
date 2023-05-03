@@ -18,15 +18,13 @@ bean.setQuantity(quantity);
 bean.setProductNo(idx);
 boolean result = false;
 String destination = "";
-String msg = "장바구니에 담기 실패했습니다";
+String msg = "";
 if (id == null) {
 	msg="로그인 해주세요!";
 	destination="login.jsp";
 }else{
+	msg = "장바구니에 담았습니다!";
 	result = cmgr.addCart(bean);
-	if(result){
-	  msg = "장바구니에 담았습니다!";
-	}
 }
 
 %>
@@ -40,7 +38,6 @@ if (id == null) {
 <meta name="author"
 	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 <meta name="generator" content="Hugo 0.111.3">
-<title>Blog Template · Bootstrap v5.3</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 <script
@@ -90,7 +87,7 @@ function toStore(){
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title"><%=msg %></h5>
+        <h5 class="modal-title"><%=msg%></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

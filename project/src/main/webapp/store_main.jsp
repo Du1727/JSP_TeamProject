@@ -9,17 +9,16 @@
 <jsp:useBean id="mmgr" class="member.MemberMgr"></jsp:useBean>
 
 <%
-String id = (String) session.getAttribute("idKey");
-String authority ="";
+String id = "";
+id = (String) session.getAttribute("idKey");
+String authority = "user";
 //권한 확인
-if(id != null) {
+if (id != null) {
 	MemberBean mbean = new MemberBean();
 	mbean = mmgr.getMember(id);
 	authority = mbean.getAuthority();
-}else{
-	id="";
 }
-String[] category = mgr.getCategory();	
+String[] category = mgr.getCategory();
 %>
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
@@ -31,7 +30,6 @@ String[] category = mgr.getCategory();
 <meta name="author"
 	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 <meta name="generator" content="Hugo 0.111.3">
-<title>스토어</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 <script
@@ -106,11 +104,20 @@ String[] category = mgr.getCategory();
 	});
 	
 	function productInsert(){
-        window.open("store_insert.jsp", "상품 추가", "width=500, height=600");
+	    var _width = '500';
+	    var _height = '600';
+	    var _left = Math.ceil(( window.screen.width - _width )/2);
+	    var _top = Math.ceil(( window.screen.height - _height )/2);
+
+	    window.open('store_insert.jsp', '상품 추가', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );        
     }
 	function productUpdate(productno){
-		
-		window.open("store_update.jsp?productNo="+productno, "상품 정보 수정", "width=500, height=600,resizable = no, scrollbars = no");
+		var _width = '500';
+	    var _height = '600';
+	    var _left = Math.ceil(( window.screen.width - _width )/2);
+	    var _top = Math.ceil(( window.screen.height - _height )/2);
+
+	    window.open("store_update.jsp?productNo="+productno, '상품 정보 수정', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top );		
    }
 	
 </script>
@@ -118,38 +125,29 @@ String[] category = mgr.getCategory();
 </head>
 
 <body>
-	
-	
 	<div class="container-lg">
-		<img src="images/parts/store_banner.png"
+		<img src="https://ifh.cc/g/C9B70Z.jpg"
 			class="product-img img-fluid mx-auto d-block " alt="...">
 
-		<div class="nav-scroller py-1 mb-2 border" id="list-example">
+		<div class="nav-scroller py-1 mb-2" id="list-example">
 			<nav class="nav d-flex justify-content-around">
 				<a class="nav-link p-2 link-secondary" href="#best"><h4>베스트</h4></a>
-				<%
-				for (int i = 0; i < category.length; i++) {
-				%>
+				<%for (int i = 0; i < category.length; i++) {%>
 				<a class="nav-link p-2 link-secondary" href="#store<%=i%>>"><h4><%=category[i]%></h4></a>
-				<%
-				}
-				%>
-				<a class="nav-link p-2 link-secondary" href="cart.jsp"><h4>장바구니</h4></a>
+				<%}%>				
+				<a class="nav-link p-2 link-secondary" href="cart.jsp"><h4>장바구니</h4></a>				
+				<% if (authority.equals("admin")) { %>	
+					<a class="nav-link p-2 link-secondary" href="javascript:productInsert()"><h4><i class="bi bi-plus-circle"></i>&nbsp;관리<h4></h4></a>			
+				<% } %>
 			</nav>
 		</div>
-		<button type="button" class="btn customBtn"
-						onclick="productInsert()">
-						<i class="bi bi-plus-circle fs-2"></i>
-					</button>
 	</div>
-
-
-
 	<main class="container-lg">
 		<div data-bs-spy="scroll" data-bs-target="#list-example"
 			data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
 			<div>
-				<h3 class="border-bottom border-2" id="best">베스트</h3>
+				<h3 id="best" style="padding-top: 35px;"><i class="fa-solid fa-star"></i>&nbsp;베스트</h3>
+				<hr width="130px" color="#FF0000" style="color:#FF0000; height: 5px;">
 				<div class="row row-cols-1 rofw-cols-xs-3 g-4"
 					style="padding-left: 30px; padding-top: 20px">
 					<!-- 카드 생성 부분 -->
@@ -218,9 +216,13 @@ String[] category = mgr.getCategory();
 			for (int i = 0; i < category.length; i++) {
 			%>
 			<div>
-				<h3 class="border-bottom border-2" id="store<%=i%>>">
-					<%=category[i]%>
-				</h3>
+			
+				<h3 id="store<%=i%>>" style="padding-top: 35px;"><i class="fa-solid fa-check"></i>&nbsp;<%=category[i]%></h3>
+				<%if(category[i].length() > 2) { %>
+				<hr width="130px" color="#6B66FF" style="color:#6B66FF; height: 5px;">				
+				<%} else { %>
+				<hr width="100px" color="#6B66FF" style="color:#6B66FF; height: 5px;">				
+				<%} %>				
 				<div class="row row-cols-1 row-cols-xs-3 g-4"
 					style="padding-left: 30px; padding-top: 20px">
 					<!-- 카드 생성 부분 -->
@@ -254,7 +256,7 @@ String[] category = mgr.getCategory();
 								</a>
 							</form>
 							<%
-							} else  {
+							} else {
 							%>
 							<a class="open-productDetail nav-link mx-auto"
 								style="width: 16rem; height: 16rem;"

@@ -32,7 +32,6 @@ double discount = 0;
 <meta name="author"
 	content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
 <meta name="generator" content="Hugo 0.111.3">
-<title>Blog Template · Bootstrap v5.3</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/bootstrap.min.css">
 <script

@@ -8,13 +8,22 @@
 <%@page import="ticketing.MovieInfoBean"%>
 <%@page import="java.util.Vector"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
-<jsp:useBean id="tMgr" class="ticketing.TicketingMgr" />
+<jsp:useBean id="tMgr" class="ticketing.TicketingMgr"/>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
 session.setMaxInactiveInterval(30);
 String id = (String) session.getAttribute("idKey");
-String movieNm = (String) session.getAttribute("movieNm");
 String movieIdx = (String) session.getAttribute("movieIdx");
+System.out.println("movieIdx: "+movieIdx);	
+if(movieIdx!=null && !movieIdx.equals("null") && movieIdx.length()>0){
+	MovieInfoBean bean = tMgr.getMovieInfo(Integer.parseInt(movieIdx));
+	session.setAttribute("movieNm", bean.getMovieNm());
+	session.setAttribute("movieDmType", bean.getMovieDmType());
+	session.setAttribute("movieAgeLimit", bean.getAgeLimit());
+	session.setAttribute("posterPath", bean.getPosterPath());
+	System.out.println(bean.getAgeLimit());
+}
+String movieNm = (String) session.getAttribute("movieNm");
 String movieDmType = (String) session.getAttribute("movieDmType");
 String movieAgeLimit = (String) session.getAttribute("movieAgeLimit");
 String posterPath = (String) session.getAttribute("posterPath");
@@ -27,15 +36,19 @@ String selectTime = (String) session.getAttribute("selectTime");
 String tableNm = (String) session.getAttribute("tableNm");
 int filterTheaterNum = session.getAttribute("filterTheaterNum")!=null?(int) session.getAttribute("filterTheaterNum"):0;
 HashMap<Integer, Vector<SeatBean>> filterSeat = session.getAttribute("filterSeat")!=null?(HashMap<Integer, Vector<SeatBean>>) session.getAttribute("filterSeat"):null;
-Vector<MovieInfoBean> movieList = tMgr.getMovieList();
+String movieSort = (String) session.getAttribute("movieSort");
+if(!"최신순".equals(movieSort)&&!"평점순".equals(movieSort)){
+	movieSort = "최신순";
+}
+Vector<MovieInfoBean> movieList = tMgr.getMovieList(movieSort);
 Vector<CityBean> cityList = tMgr.getCityList();
 Vector<String> theaterList = tMgr.getTheaterNmList(cityNm);
 Vector<TheaterBean> screenList = tMgr.getTheaterList(cityNm, sectionNm);
 String noImg="https://3.bp.blogspot.com/-WhBe10rJzG4/U4W-hvWvRCI/AAAAAAAABxg/RyWcixpgr3k/s1600/noimg.jpg";
-String ageAll="https://i.namu.wiki/i/8smyYc_8tlclJkr6-iED59wAf5cdogXXQj8-vM4zSDOIl0T5WjEywG1QVEsrzCpAhn7AmeDvPXthGSotL4y259tyKZrkfCWsQRzjmtzNcPFdTIWGFv4u3nJsor_gO9MlLTuqhumYrUDbbHReyvp8QA.svg";
-String age12="https://i.namu.wiki/i/O2S-WL_0oQ8uxTwTtggflSwP5HtexGmnfodUWs3ww7xHLoXPG_8wirNoHaexMieXGsxdSPqFxrFMdP8PS1L1yKkYpcfSArcY_Wvm1wApxgEVNgIfGtOeWjdBv2eQHCcR4EGL1LnCpIpUwdaieNEy5w.svg";
-String age15="https://i.namu.wiki/i/aeORhjozEnc8m-iuqefSMBhghYtXZUXkI88a66N5CcKLNGrzKx9eTNNa7R-vsQjUB9FRpKf3UmVABwcxSPNTKidnMuGPlWktgN-VYqlm6Vt-zHeW0YTxuVRVGwDj1sSqdBOTmi-6XfDIygl7TmatbQ.svg";
-String age18="https://i.namu.wiki/i/2e_qQrqlgjMD3gp-Iez13gfUXVRUPM63apODhZlKMI018On-AdQzEoFsNpcb5dTduJZlF8J5HTN58MT39wFpV8ChhhwKanbAeXTCsRNuNWnizNEiswpiAwWwnUkujCKt_k2q-IIJOqADDvZW3GQjhg.svg";
+String ageAll="https://i.namu.wiki/i/u4nooZ0Bgr6_Eal2iwhYXL6Y8XJ8fXhTPqx9GxPlOnxgASAjAkIL7CWiXK2reCgdmFX_c7d5uyssgK4KwVxCZzT1LgBPGi8fqAjO-8Axotwy-nJYAUV-ygSRXZNeqAblg8MyFd7N7IunUoKt4dMJgQ.svg";
+String age12="https://i.namu.wiki/i/oyXxp9336DTf9MsQ63DZWNwvKp9tGsAEhuQwMjssVNPPf6uDVctcEty4kN5GJZVP72xmIm_cYVMOaSUcnbf68lrIgnwZuEYAhcxujceK7MUQkyC_GfE86zMpnDgUJ4tIGsbM56T97XGT2WA81xABgQ.svg";
+String age15="https://i.namu.wiki/i/UX5J2fdD2m28KL7UIdMiSSDsBeBVhYQGPRe6rI4mebQEfPtGAVI3W7m3GjfgXlNftSOaoIZt4iEq3uBRQ2HzJ6-2_U0pLOb3OvR-LDPjV39AxbQ07-tYxT61bY3cCvo0gCo2I_P-VQw6tSomwzrhxw.svg";
+String age18="https://i.namu.wiki/i/TDV9H0JckYLmkew97duuAqwjm_Dt7jktgVbLpi-UXUk2Jidy3xTU1wWtmLTj6JLSrQzDB4W4mlzkz-Mzr0E4w_cl--WBewVPvvQ6PLkBGdHgn0r3fDoNDEcglpwWI_LIK6sjW6JLluwvAtUvsDohrw.svg";
 String ageIcon = "";
 String ageStr = "";
 if(movieAgeLimit!=null){
@@ -72,10 +85,10 @@ if(movieNm!=null && sectionNm!=null && movieNm.length()>0 && !sectionNm.equals("
 	}
 	scrnListMap = new TreeMap<Integer, Vector<ScreeningInfoBean>>(tMgr.getScrnList(cityNm, sectionNm, printDate, Integer.parseInt(movieIdx), seatMap));
 }
+int selectedMovieIdx = -1;
 %>
 <!DOCTYPE unspecified PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <head>
-<title>예매 페이지</title>
 <link href="style.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
@@ -427,6 +440,13 @@ function SelectCity() {
 	document.ticketingFrm.action = "TicketingProc.jsp";
 	document.ticketingFrm.submit();
 }
+function SelectMovieSort() {
+	var idx = document.getElementById("selectMovieSort").selectedIndex;
+	var sort = document.getElementById("selectMovieSort").options[idx].value;
+	document.getElementById("movieSort").value = sort;
+	document.ticketingFrm.action = "TicketingProc.jsp";
+	document.ticketingFrm.submit();
+}
 function selectMovie(movieIdx) {
 	var cell = document.getElementById("sendMvIdx");
 	cell.value = movieIdx;
@@ -570,11 +590,11 @@ function submitToSelectSeat() {
 				<tbody>
 					<tr>
 						<td class="tg-0lax" height="10%" align="center">
-							<!-- 영화정렬선택 --> <select style="width: 30%;">
-								<option>예매순</option>
-								<option>관객순</option>
-								<option>평점순</option>
+							<!-- 영화정렬선택 --> <select id="selectMovieSort" style="width: 30%;" onchange="javascript:SelectMovieSort()">
+								<option <%if(movieSort.equals("최신순")){%>selected="selected"<%}%>>최신순</option>
+								<option <%if(movieSort.equals("평점순")){%>selected="selected"<%}%>>평점순</option>
 						</select>
+						<input type="hidden" id="movieSort" name="movieSort" value="<%=movieSort%>">
 						</td>
 						<td class="tg-0lax" align="center">
 							<!-- 좌석필터상영관선택 --> <select id="selectedFilterTheater"
@@ -632,7 +652,7 @@ function submitToSelectSeat() {
 					<tr>
 						<td class="tg-0lax" rowspan="2" height="40%">
 							<!-- 영화목록 -->
-							<div style="height: 100%; width: 100%; overflow: auto;">
+							<div id="movieScroll" style="height: 100%; width: 100%; overflow: auto;">
 								<%
 									for (int i = 0; i < movieList.size(); i++) { String icon="";
 									String age=movieList.get(i).getAgeLimit();
@@ -645,7 +665,7 @@ function submitToSelectSeat() {
 								<table width=100%>
 									<tr>
 										<td class="rccl"
-											<%if(movieList.get(i).getMovieNm().equals(movieNm)){%>
+											<%if(movieList.get(i).getMovieNm().equals(movieNm)){selectedMovieIdx=i;%>
 											style="background: lightgray;" <%}%>><a
 											href="javascript:selectMovie('<%=movieList.get(i).getIdx()%>')"
 											class="noneUnderLine"> <img width="22" src="<%=icon%>">
@@ -838,6 +858,8 @@ function submitToSelectSeat() {
 		</form>
 	</div>
 	<script>
+	var scrollableDiv = document.getElementById("movieScroll");
+	scrollableDiv.scrollTop = <%=selectedMovieIdx*42.15%>;
 	for(var i=<%=(datePage-1)*5%>;i<<%=(datePage-1)*5+5%>; i++) {
 			var now = new Date();
 			var targetDay = new Date(now.setDate(now.getDate() + i));

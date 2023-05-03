@@ -61,6 +61,10 @@
 		document.movieFrm.title.value=t; 
 		document.movieFrm.submit();
 	}
+	function buy(t) {
+		document.buyFrm.movieIdx.value=t; 
+		document.buyFrm.submit();
+	}
 </script>
     <head>    	
 		<%@include file ="navbar-white.jsp" %>	
@@ -115,9 +119,9 @@
                                     </li>
                                 </ul>
                                 <br><hr><br>
-                                <a class="btn-theme btn" href="#" style="  background-color: #74D36D;  border-color: rgba(255,255,255,0.1);
+                                <a class="btn-theme btn" href="javascript:buy('<%=bean.getIdx()%>')" style="  background-color: #74D36D;  border-color: rgba(255,255,255,0.1);
 							color: #fff;"><i class="bi bi-cart-plus"></i>&nbsp;&nbsp;장바구니</a>
-                                <a class="btn-theme btn" href="#" style="  background-color: #ff8a00;  border-color: rgba(255,255,255,0.1);
+                                <a class="btn-theme btn" href="javascript:buy('<%=bean.getIdx()%>')" style="  background-color: #ff8a00;  border-color: rgba(255,255,255,0.1);
 							color: #fff;"><i class="fas fa-ticket-alt"></i>&nbsp;&nbsp;예매하기</a>
                             </div>
                         </div>
@@ -191,6 +195,9 @@
         </div>
 		<form name="movieFrm" method="post" action="moviedetail.jsp">
 			<input type="hidden" name="title" value="">
+		</form>
+		<form name="buyFrm" method="post" action="TicketingSite.jsp">
+			<input type="hidden" name="movieIdx" value="">
 		</form>
     </body>    
     <%@include file ="footer.jsp" %>

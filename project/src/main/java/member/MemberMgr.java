@@ -34,7 +34,6 @@ public class MemberMgr {
 		return flag;
 		
 	}
-	
 	public Vector<MemberBean> getMemberAll(){
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -133,7 +132,7 @@ public class MemberMgr {
 		MemberBean bean = new MemberBean();
 		try {
 			con = pool.getConnection();
-			sql = "select * from member where id=?";
+			sql = "select * from member where id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
@@ -155,7 +154,6 @@ public class MemberMgr {
 				bean.setMileage(rs.getInt("mileage"));
 				bean.setProfile(rs.getString("profile"));
 				bean.setAuthority(rs.getString("authority"));
-	
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

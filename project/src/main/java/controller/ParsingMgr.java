@@ -31,7 +31,8 @@ public class ParsingMgr {
 					for(int k = 0; k < movieData.length; k++) {
 						pstmt.setString(k+1, movieData[k]);		
 					}
-					pstmt.executeUpdate();			
+					pstmt.executeUpdate();
+					System.out.println("[ 새로운 추가 ] " + movieData[0]);
 				} catch (Exception e) {
 					e.printStackTrace();
 				} finally {

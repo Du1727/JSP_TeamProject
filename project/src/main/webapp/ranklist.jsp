@@ -5,11 +5,16 @@
 	String id = (String)session.getAttribute("idKey");
 	Vector<OfficeBean> vlist = movieMgr.loadOfficeMovie();
 	
-	
 %>
 
 <!DOCTYPE html>
 <html>
+	<script type="text/javascript">
+		function search(t) {
+			document.movieFrm.title.value=t; 
+			document.movieFrm.submit();
+		}
+	</script>
     <head>    	
 		<%@include file ="navbar-white.jsp" %>	
     </head>
@@ -33,10 +38,10 @@
                     </div>
                     <div class="entity-content">
                         <h4 class="entity-title">
-                            <a class="content-link" href="movie-info-sidebar-right.html"><%=bean.getName()%></a>
+                            <a class="content-link" href="javascript:search('<%=bean.getName()%>')"><%=bean.getName()%></a>
                         </h4>
                         <div class="entity-category">
-                            <a class="content-link" href="movies-blocks.html"><%=bean.getOpendt()%></a>
+                            <a class="content-link"><%=bean.getGenre()%></a>
                         </div>
                         <div class="entity-info">
                             <div class="info-lines">
@@ -44,6 +49,10 @@
                                     <span class="text-theme info-icon"><i class="fas fa-star"></i></span>
                                     <span class="info-text"><%=bean.getVote().substring(0,3)%></span>
                                     <span class="info-rest">/10</span>
+                                </div>   
+                                <div class="info info-short">
+                                    <span class="text-theme info-icon"><i class="fas fa-calendar-alt"></i></span>
+                                    <span class="info-text"><%=bean.getOpendt()%></span>
                                 </div>
                                 <div class="info info-short">
                                     <span class="text-theme info-icon"><i class="fas fa-clock"></i></span>
@@ -70,6 +79,9 @@
                 <% } %>
                 <h1 style="padding-bottom: 200px;"></h1>
             </div>
+		<form name="movieFrm" method="post" action="moviedetail.jsp">
+			<input type="hidden" name="title" value="">
+		</form>
     </body>    
     <%@include file ="footer.jsp" %>
 </html>

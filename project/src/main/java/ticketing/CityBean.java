@@ -3,11 +3,6 @@ package ticketing;
 public class CityBean {
 	private String address;
 	private int num;
-	
-	public CityBean() {
-		
-	}
-	
 	public CityBean(String address, int num) {
 		super();
 		this.address = address;

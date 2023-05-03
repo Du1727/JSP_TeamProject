@@ -2,6 +2,7 @@
 <jsp:useBean id="mgr" class="member.MemberMgr"></jsp:useBean>
 
 <%
+	request.setCharacterEncoding("UTF-8");
 	String id = (String)session.getAttribute("idKey");
 	String idList[] = mgr.getMemberIdAll();
 	String idListString = idList[0];

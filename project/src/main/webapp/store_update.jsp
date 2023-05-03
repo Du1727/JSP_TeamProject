@@ -76,23 +76,23 @@ const form = document.getElementById("productData");
 			return;
 		}else  {
 			form.flag.value = "update";
-			form.submit();
+			form.getElementById("productUpdate").submit();
 			window.close();
 		}
 	}
 	function delete(){
 		form.flag.value = "delete";
-		form.submit();
 		window.close();
 	}
 </script>
 </head>
 
 <body>
-	<form method="post" action="store_update_proc.jsp" id="productData">
+	<form method="post" action="UpdateProductServlet" name="productUpdate"id="productUpdate">
+	<input name="productIdx"value="<%=productNo%>" type="hidden">
 		<div class="px-4">
 			<div class="mb-3">
-				<label for="productName" class="form-label">상품명</label>
+				<label for="productName" class="form-label" style="padding-top: 35px;">상품명</label>
 				<input type="text" class="form-control"
 					id="productName" name="productName" placeholder="name@example.com"
 					style="width: 300px; height: 40px;"value="<%=bean.getName()%>">
@@ -142,13 +142,13 @@ const form = document.getElementById("productData");
 				</div>
 			</div>
 			<div class="mb-3">
-				<label for="formFile" class="form-label">상품 이미지 추가</label> <input
-					class="form-control" type="file" id="formFile">
-			</div>
+					<label for="title" class="form-label"><B>첨부파일</B></label> <br /> <input
+						type="file" name="filename" class="form-control"
+						id="filename">
+				</div>
 			<div>
-				<button type="button" class="btn" onclick="update()">추가하기</button>
-				<button type="button" class="btn" onclick="delete()">삭제하기</button>
-				<button type="button" class="btn btn-danger" onClick="endPage()">취소하기</button>
+				<button type="button" class="btn" style="background-color: #47C83E; color: white;" onclick="update()">추가하기</button>
+				<button type="button" class="btn  btn-danger" onclick="delete()">삭제하기</button>
 				<input type="hidden" name="flag"/>
 				<input type="hidden" name="productNo" value="<%=productNo%>"/>
 			</div>

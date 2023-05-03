@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	content="initial-scale=1, shrink-to-fit=no" />
 <title>Dongeui Cinema</title>
 <!-- Bootstrap -->
 <link href="./bootstrap/css/bootstrap.css" rel="stylesheet"
@@ -54,36 +54,33 @@
 	<div class="col-4"></div>
 
 	<div class="col-8">
-		<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-		
+		<nav class="navbar navbar-expand-lg navbar-dark fixed-top"
+			id="mainNav">
 			<div class="container" align="right">
-			
 				<div class="collapse navbar-collapse" id="navbarResponsive">
-					<ul class="navbar-nav navbar-nav justify-content-end flex-grow-1 pe-3">
-						<li class="nav-item"><a class="nav-link" href="/DEC/ticketing/TicketingSite.jsp"
+					<ul
+						class="navbar-nav navbar-nav justify-content-end flex-grow-1 pe-3">
+						<li class="nav-item"><a class="nav-link" href="TicketingSite.jsp"
 							style="font-size: 1.05em; font-family: 배달의민족 도현; padding-right: 25px">예매</a></li>
 						<li class="nav-item"><a class="nav-link" href="movielist.jsp"
 							style="font-size: 1.05em; font-family: 배달의민족 도현; padding-right: 25px">영화</a></li>
-						<li class="nav-item"><a class="nav-link" href="#move2"
-							style="font-size: 1.05em; font-family: 배달의민족 도현; padding-right: 50px">영화관</a></li>
+						<li class="nav-item"><a class="nav-link" href="ranklist.jsp"
+							style="font-size: 1.05em; font-family: 배달의민족 도현; padding-right: 50px">랭킹</a></li>
 					</ul>
 				</div>
-				
-				<a class="navbar-brand" href="index.jsp">
-					<img src='https://ifh.cc/g/Baq4YS.png' border='0' width=100% height=100% alt="..." />
-				</a>
-				
+				<a class="navbar-brand" href="index.jsp"><img
+					src='https://ifh.cc/g/Baq4YS.png' border='0' width=100% height=100%
+					alt="..." /></a>
 				<div class="collapse navbar-collapse" id="navbarResponsive">
 					<ul class="navbar-nav text-uppercase ms-1">
-						<li class="nav-item"><a class="nav-link" href="/DEC/store/store_main.jsp"
+						<li class="nav-item"><a class="nav-link" href="store_main.jsp"
 							style="font-size: 1.05em; font-family: 배달의민족 도현; padding-left: 45px;">스토어</a></li>
-						<li class="nav-item"><a class="nav-link" href="/DEC/event/event_main.jsp"
+						<li class="nav-item"><a class="nav-link" href="../WEB-INFevent/event_main.jsp"
 							style="font-size: 1.05em; font-family: 배달의민족 도현; padding-left: 25px">이벤트</a></li>
-						<li class="nav-item"><a class="nav-link" href="/DEC/board/boardList.jsp"
+						<li class="nav-item"><a class="nav-link" href="boardList.jsp"
 							style="font-size: 1.05em; font-family: 배달의민족 도현; padding-left: 25px">문의사항</a></li>
 					</ul>
 				</div>
-				
 			</div>
 		</nav>
 	</div>
@@ -93,11 +90,6 @@
 			<div class="container fixed-top" align="right">
 				<br>
 				<%if(logged) {%>
-					<i class="bi bi-cart"
-						style="font-size: 1.2rem; color: rgb(200, 200, 200);"></i> <a
-						href="cart.jsp"
-						style="color: rgb(200, 200, 200); text-decoration-line: none;">장바구니</a>
-					&nbsp;&nbsp;&nbsp;&nbsp;<a style="color: rgb(200, 200, 200);">|</a>&nbsp;&nbsp;&nbsp;
 					<i class="bi bi-person-fill"
 						style="font-size: 1.2rem; color: rgb(200, 200, 200);"></i> <a
 						href="logout.jsp"

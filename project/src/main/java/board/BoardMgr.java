@@ -403,4 +403,30 @@ public class BoardMgr {
 		}
 		return boardWriterId;
 	}
+	
+	// 해당 사용자의 권한 확인
+	public String checkAuthority(String id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		String authority = "";
+		try {
+			con = pool.getConnection();
+			sql = "select authority from member where id = ? ";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				authority = rs.getString(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		return authority;
+		
+	}
+	
 }

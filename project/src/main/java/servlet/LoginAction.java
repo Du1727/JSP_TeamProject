@@ -28,11 +28,9 @@ public class LoginAction extends HttpServlet {
 			request.getSession().setAttribute("idKey", id);
 			if (checkbox != null) {				
 				response.addCookie(cookie);
-				
 			} else {
 				cookie.setMaxAge(0);
 				response.addCookie(cookie);
-			
 			}
 		} else {			
 			response.sendRedirect("/project/login.jsp");			

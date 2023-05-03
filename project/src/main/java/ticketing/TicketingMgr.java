@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Vector;
-import dbcon.DBConnectionMgr;
+import board.DBConnectionMgr;
 
 public class TicketingMgr {
 
@@ -17,16 +17,22 @@ public class TicketingMgr {
 	public TicketingMgr() {
 		pool = DBConnectionMgr.getInstance();
 	}
-	//전체 영화 정보
-	public Vector<MovieInfoBean> getMovieList() {
+
+	public Vector<MovieInfoBean> getMovieList(String str) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = null;
 		Vector<MovieInfoBean> vlist = new Vector<>();
+		String sql2 = "";
+		
 		try {
 			con = pool.getConnection();
-			sql = "select * from movieinfo";
+			if (str.equals("최신순")) {
+				sql = "select * from movieinfo order by opendt desc";
+			} else {
+				sql = "select * from movieinfo order by vote desc";
+			}
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
@@ -154,6 +160,7 @@ public class TicketingMgr {
 		} finally {
 			pool.freeConnection(con, pstmt, rs);
 		}
+//		System.out.println("Mgr : "+vlist.get(0).getCityAddress());
 		return vlist;
 	}
 
@@ -190,18 +197,18 @@ public class TicketingMgr {
 		String temp[] = date.split("[.]");
 		try {
 			con = pool.getConnection();
-			sql = "SELECT s.movieIdx, s.city_address, s.sectionName, s.theaterNum, s.screenTime, s.reservedSeats, t.seat\r\n"
+			sql = "SELECT s.movieIdx, s.city_address, s.sectionName, s.theaterNum, s.screenTime, s.endTime, s.reservedSeats, t.seat\r\n"
 					+ "FROM screeninginfo s, theater t\r\n"
 					+ "WHERE s.city_address=t.city_address AND s.sectionName=t.theaterName AND s.theaterNum=t.theaterNum"
 					+ " AND s.city_address=? AND s.sectionName=? AND s.screenTime between ? and ? AND s.movieIdx=?";
-			if (seatFilter != null) {
+			if (seatFilter != null && seatFilter.size()>0) {
 				for (int key : seatFilter.keySet()) {
-					sql += " AND ((theaterNum = ? AND reservedSeats NOT LIKE ?";
+					sql += " AND ((s.theaterNum = ? AND s.reservedSeats NOT LIKE ?";
 					String[] spliter = seatFilter.get(key).split("/");
 					for (int i = 1; i < spliter.length; i++) {
-						sql += " AND reservedSeats NOT LIKE ?";
+						sql += " AND s.reservedSeats NOT LIKE ?";
 					}
-					sql += ") OR theaterNum != ?)";
+					sql += ") OR s.theaterNum != ?)";
 				}
 			}
 			pstmt = con.prepareStatement(sql);
@@ -216,10 +223,10 @@ public class TicketingMgr {
 					pstmt.setInt(sqlIdx, key);
 					sqlIdx++;
 					String[] spliter = seatFilter.get(key).split("/");
-					pstmt.setString(sqlIdx, spliter[0]);
+					pstmt.setString(sqlIdx, "%"+spliter[0]+"%");
 					sqlIdx++;
 					for (int i = 1; i < spliter.length; i++) {
-						pstmt.setString(sqlIdx, spliter[i]);
+						pstmt.setString(sqlIdx, "%"+spliter[i]+"%");
 						sqlIdx++;
 					}
 					pstmt.setInt(sqlIdx, key);
@@ -231,7 +238,7 @@ public class TicketingMgr {
 				String[] reservedSeat = rs.getString("reservedSeats").split("/");
 				Vector<String> vRS = new Vector<String>(Arrays.asList(reservedSeat));
 				ScreeningInfoBean bean = new ScreeningInfoBean(rs.getInt("movieIdx"), city, section,
-						rs.getInt("theaterNum"), rs.getString("screenTime"), rs.getInt("seat"), reservedSeat.length,
+						rs.getInt("theaterNum"), rs.getString("screenTime"), rs.getString("endTime"), rs.getInt("seat"), reservedSeat.length,
 						vRS);
 				if (scrnListMap.get(bean.getTheaterNum()) != null) {
 					scrnListMap.get(bean.getTheaterNum()).add(bean);
@@ -331,6 +338,4 @@ public class TicketingMgr {
 		}
 		return updateRows;
 	}
-	
-	
 }

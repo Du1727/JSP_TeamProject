@@ -4,6 +4,7 @@
 <jsp:useBean id = "bean" class = "member.MemberBean"/>
 <jsp:setProperty property = "*" name = "bean"/>
 <%
+	request.setCharacterEncoding("UTF-8");
 	mgr.insertMember(bean);
 %>
 <script>	

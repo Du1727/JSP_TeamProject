@@ -173,12 +173,12 @@ public class storeMgr {
 		storeBean bean = new storeBean();
 		try {
 			con = pool.getConnection();
-			sql = "select name,detail,price,type,status,image from product where idx=?";
+			sql = "select name,detail,price,category,status,image from product where idx=?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, idx);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				// name,detail,price,type,status,image,highlight
+				// name,detail,price,category,status,image,highlight
 				bean.setDetail(rs.getString("detail"));
 				bean.setName(rs.getString("name"));
 				bean.setImage(rs.getString("image"));
@@ -205,28 +205,29 @@ public class storeMgr {
 			MultipartRequest multi = new MultipartRequest(req, SAVEFOLDER, MAXSIZE, ENCODING,
 					new DefaultFileRenamePolicy());
 			con = pool.getConnection();
-			if (multi.getFilesystemName("image") != null) {
+			if (multi.getFilesystemName("filename") != null) {
 				// 이미지 추가
-				// idx,name,detail,price,type,status,image
-				sql = "insert product(idx,name,detail,price,type,status,image)" + "values(?,?,?,?,?,?,?)";
+				// idx,name,detail,price,category,status,image
+				sql = "insert product(name,detail,price,category,status,image,highlight)"
+				+ "values(?,?,?,?,?,?,?)";
 				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, UtilMgr.parseInt(multi, "idx"));
-				pstmt.setString(2, multi.getParameter("name"));
-				pstmt.setString(3, multi.getParameter("detail"));
-				pstmt.setInt(4, UtilMgr.parseInt(multi, "price"));
-				pstmt.setInt(5, UtilMgr.parseInt(multi, "type"));
-				pstmt.setInt(6, UtilMgr.parseInt(multi, "status"));
-				pstmt.setString(7, multi.getFilesystemName("image"));
+				pstmt.setString(1, multi.getParameter("productName"));
+				pstmt.setString(2, multi.getParameter("productDetail"));
+				pstmt.setInt(3, UtilMgr.parseInt(multi, "productPrice"));
+				pstmt.setString(4, multi.getParameter("productCategory"));
+				pstmt.setInt(5, UtilMgr.parseInt(multi, "productStatus"));
+				pstmt.setString(6, multi.getFilesystemName("filename"));
+				pstmt.setInt(7, UtilMgr.parseInt(multi, "productHighLgiht"));
 			} else {
 				// 이미지 추가 없을때
-				sql = "insert product(idx,name,detail,price,type,status,)" + "values(?,?,?,?,?,?)";
+				sql = "insert product(name,detail,price,category,status,highlight)" + "values(?,?,?,?,?,?)";
 				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, UtilMgr.parseInt(multi, "idx"));
-				pstmt.setString(2, multi.getParameter("name"));
-				pstmt.setString(3, multi.getParameter("detail"));
-				pstmt.setInt(4, UtilMgr.parseInt(multi, "price"));
-				pstmt.setInt(5, UtilMgr.parseInt(multi, "type"));
-				pstmt.setInt(6, UtilMgr.parseInt(multi, "status"));
+				pstmt.setString(1, multi.getParameter("productName"));
+				pstmt.setString(2, multi.getParameter("productDetail"));
+				pstmt.setInt(3, UtilMgr.parseInt(multi, "productPrice"));
+				pstmt.setString(4, multi.getParameter("productCategory"));
+				pstmt.setInt(5, UtilMgr.parseInt(multi, "productStatus"));
+				pstmt.setInt(6, UtilMgr.parseInt(multi, "productHighLgiht"));
 			}
 
 			if (pstmt.executeUpdate() == 1) {
@@ -254,27 +255,43 @@ public class storeMgr {
 			con = pool.getConnection();
 			if (multi.getFilesystemName("image") != null) {
 				// 이미지 수정
-				// idx,name,detail,price,type,status,image
-				sql = "update product set name=?,detail=?," + "price=?,type=?,status=?,image=? where idx=?";
-				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, multi.getParameter("name"));
-				pstmt.setString(2, multi.getParameter("detail"));
-				pstmt.setInt(3, UtilMgr.parseInt(multi, "price"));
-				pstmt.setInt(4, UtilMgr.parseInt(multi, "type"));
-				pstmt.setInt(5, UtilMgr.parseInt(multi, "status"));
-				pstmt.setString(6, multi.getFilesystemName("image"));
-				pstmt.setInt(7, UtilMgr.parseInt(multi, "idx"));
-
+				// idx,name,detail,price,category,status,image
+				sql = "update product SET name = ?, "
+						+ "    detail = ?, "
+						+ "    price = ?, "
+						+ "    category = ?, "
+						+ "    status = ?, "
+						+ "    image = ?, "
+						+ "    highlight = ?"
+						+ "where idx = ?";
+						pstmt = con.prepareStatement(sql);
+						
+						pstmt.setString(1, multi.getParameter("productName"));
+						pstmt.setString(2, multi.getParameter("productDetail"));
+						pstmt.setInt(3, UtilMgr.parseInt(multi, "productPrice"));
+						pstmt.setString(4, multi.getParameter("productCategory"));
+						pstmt.setInt(5, UtilMgr.parseInt(multi, "productStatus"));
+						pstmt.setString(6, multi.getFilesystemName("filename"));
+						pstmt.setInt(7, UtilMgr.parseInt(multi, "productHighLgiht"));
+						pstmt.setInt(8, UtilMgr.parseInt(multi, "productIdx"));
 			} else {
 				// 이미지 수정 아님
-				sql = "update product set name=?,detail=?," + "price=?,type=?,status=? where idx=?";
+				sql = "update product SET name = ?, "
+						+ "    detail = ?, "
+						+ "    price = ?, "
+						+ "    category = ?, "
+						+ "    status = ?, "
+						+ "    image = ?, "
+						+ "    highlight = ?"
+						+ "where idx = ?";
 				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, multi.getParameter("name"));
-				pstmt.setString(2, multi.getParameter("detail"));
-				pstmt.setInt(3, UtilMgr.parseInt(multi, "price"));
-				pstmt.setInt(4, UtilMgr.parseInt(multi, "type"));
-				pstmt.setInt(5, UtilMgr.parseInt(multi, "status"));
-				pstmt.setInt(7, UtilMgr.parseInt(multi, "idx"));
+				pstmt.setString(1, multi.getParameter("productName"));
+				pstmt.setString(2, multi.getParameter("productDetail"));
+				pstmt.setInt(3, UtilMgr.parseInt(multi, "productPrice"));
+				pstmt.setString(4, multi.getParameter("productCategory"));
+				pstmt.setInt(5, UtilMgr.parseInt(multi, "productStatus"));
+				pstmt.setInt(6, UtilMgr.parseInt(multi, "productHighLgiht"));
+				pstmt.setInt(7, UtilMgr.parseInt(multi, "productIdx"));
 			}
 
 			if (pstmt.executeUpdate() == 1) {
@@ -343,12 +360,6 @@ public class storeMgr {
 		return flag;
 	}
 
-	public static void main(String[] args) {
-		storeMgr mgr = new storeMgr();
-		storeBean bean = new storeBean();
-		Vector<storeBean> vlist = mgr.productAll();
-		
-
-	}
+	
 
 }

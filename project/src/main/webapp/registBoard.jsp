@@ -1,5 +1,7 @@
 <%@page contentType="text/html; charset=UTF-8"%>
 <%
+	String id = (String) session.getAttribute("idKey");
+    System.out.println("[registerBoard.jsp]  ###### idKey : " + id) ;
 
 %>
 
@@ -116,9 +118,8 @@ html{
 
 
 				<div align="center">
-<!-- <input type="hidden" name="id" value="admin"> -->
-					 <input
-						type="hidden" name="requestStatus" value="insert">
+					<input type="hidden" name="idKey" value="<%=id%>">
+					<input type="hidden" name="requestStatus" value="insert">
 
 					<button type="button" onClick="cancleButton()"
 						class="btn btn-outline-dark">취소</button>

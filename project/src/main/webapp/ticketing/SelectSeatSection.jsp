@@ -11,10 +11,17 @@
 <jsp:useBean id="tMgr" class="ticketing.TicketingMgr" />
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
-session.setMaxInactiveInterval(30);
-String id = (String) session.getAttribute("idKey");
-String movieNm = (String) session.getAttribute("movieNm");
+session.setMaxInactiveInterval(30);String id = (String) session.getAttribute("idKey");
 String movieIdx = (String) session.getAttribute("movieIdx");
+if(movieIdx!=null && !movieIdx.equals("null") && movieIdx.length()>0){
+	MovieInfoBean bean = tMgr.getMovieInfo(Integer.parseInt(movieIdx));
+	session.setAttribute("movieNm", bean.getMovieNm());
+	session.setAttribute("movieDmType", bean.getMovieDmType());
+	session.setAttribute("movieAgeLimit", bean.getAgeLimit());
+	session.setAttribute("posterPath", bean.getPosterPath());
+	session.setAttribute("movieIdx", movieIdx);
+}
+String movieNm = (String) session.getAttribute("movieNm");
 String movieDmType = (String) session.getAttribute("movieDmType");
 String movieAgeLimit = (String) session.getAttribute("movieAgeLimit");
 String posterPath = (String) session.getAttribute("posterPath");

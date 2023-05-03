@@ -68,4 +68,24 @@ public class Utils {
 			      return false;
 			  }
 		}
+	    
+	    public static String parseSeatPosition(int i) {
+	    	if (i%15 < 9) {
+				return "" + (char) (i/15 + 65) + "0" + (i%15 + 1);
+			} else {
+				return "" + (char) (i/15 + 65) + (i%15 + 1);
+			}
+		}
+	    
+	    public static String toWon(int i) {
+			StringBuilder sb = new StringBuilder();
+			String temp = Integer.toString(i);
+			for (int j = 0; j < temp.length(); j++) {
+				sb.append(temp.charAt(temp.length()-j-1));
+				if (j%3==2 && j!=temp.length()-1) {
+					sb.append(',');
+				}
+			}
+			return sb.reverse().toString();
+		}
 }

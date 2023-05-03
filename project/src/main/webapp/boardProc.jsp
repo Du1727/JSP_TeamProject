@@ -17,9 +17,9 @@
 
 	String requestStatus = (String)request.getParameter("requestStatus");
 
-	String id = (String)request.getParameter("id");
+	String id = (String)request.getParameter("idKey");
 	
-	System.out.println("### requestStatus  : " + requestStatus);
+	
 	System.out.println("### id  : " + id);
 	
 	//비밀글을 체크를 안 한 경우
